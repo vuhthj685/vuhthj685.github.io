@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI训练师 | 大模型调优师 | 数据标注专家</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* AI科技风格背景 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #0f172a;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* 动态背景效果 */
+        .cyberpunk-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(22, 93, 255, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(100, 200, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 200, 0.05) 0%, transparent 30%),
+                linear-gradient(90deg, rgba(22, 93, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(22, 93, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            animation: bgMove 25s ease-in-out infinite;
+        }
+        
+        @keyframes bgMove {
+            0%, 100% {
+                background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+            }
+            25% {
+                background-position: 5% 5%, -5% -5%, 2% 2%, 10px 10px, 10px 10px;
+            }
+            50% {
+                background-position: 10% 10%, -10% -10%, 4% 4%, 20px 20px, 20px 20px;
+            }
+            75% {
+                background-position: 5% 5%, -5% -5%, 2% 2%, 10px 10px, 10px 10px;
+            }
+        }
+        
+        /* AI机器人背景元素 */
+        .ai-robot-bg {
+            position: fixed;
+            top: 50%;
+            right: -100px;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 400px;
+            opacity: 0.1;
+            z-index: -1;
+            background: url('https://placeholder.com/300x400/ffffff/000000?text=AI+Robot') no-repeat center center;
+            background-size: contain;
+            animation: robotFloat 15s ease-in-out infinite;
+        }
+        
+        @keyframes robotFloat {
+            0%, 100% {
+                transform: translateY(-50%) translateX(0);
+            }
+            50% {
+                transform: translateY(-55%) translateX(-20px);
+            }
+        }
+        
+        /* 容器背景 */
+        .container {
+            background-color: rgba(255, 255, 255, 0.97);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* 顶部视觉头图模块 */
+        .header {
+            position: relative;
+            background: url('https://placeholder.com/1200x400/165DFF/ffffff?text=AI训练师・模型优化专家') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            transition: padding 0.3s ease;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header h2 {
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        
+        /* 收窄后的头部样式 */
+        .header.small {
+            padding: 30px 20px;
+        }
+        
+        .header.small h1 {
+            font-size: 1.5em;
+        }
+        
+        .header.small h2 {
+            display: none;
+        }
+        
+        /* 容器样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* 标题样式 */
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #3b82f6;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            border-radius: 3px;
+        }
+        
+        /* 头部标题样式 */
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: white;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: headerGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes headerGlow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8));
+            }
+        }
+        
+        .header h2 {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1px;
+        }
+        
+        /* 核心能力矩阵模块 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+        }
+        
+        .skill-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .skill-card h4 {
+            margin: 15px 0 10px;
+            font-size: 1.1em;
+        }
+        
+        /* 行业实战案例模板模块 */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .case-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.15);
+        }
+        
+        .case-card h3 {
+            color: #065f46;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* 行业知识分享模块 */
+        .knowledge-section {
+            background: white;
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .knowledge-item {
+            display: flex;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+        
+        .knowledge-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .knowledge-item:last-child {
+            border-bottom: none;
+        }
+        
+        .knowledge-icon {
+            font-size: 2.2em;
+            margin-right: 25px;
+            color: #3b82f6;
+            flex-shrink: 0;
+        }
+        
+        .knowledge-item h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        /* 行业服务能力展示模块 */
+        .services-section {
+            margin-bottom: 60px;
+        }
+        
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .services-table th,
+        .services-table td {
+            padding: 25px;
+            text-align: left;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .services-table th {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .services-table tr:hover {
+            background-color: rgba(59, 130, 246, 0.02);
+        }
+        
+        .services-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* 底部模块 */
+        .footer {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 12px 12px 0 0;
+            margin-top: 80px;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        
+        .footer p:first-child {
+            font-size: 1.2em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.2em;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* 思维导图模块样式 */
+        .mindmap-section {
+            margin-bottom: 60px;
+        }
+        
+        .mindmap-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .mindmap-controls {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .mindmap-controls h4 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .mindmap-controls ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .mindmap-controls li {
+            margin-bottom: 10px;
+            color: #374151;
+        }
+        
+        .mindmap-controls strong {
+            color: #1e3a8a;
+        }
+        
+        .mindmap {
+            position: relative;
+            min-height: 900px;
+            padding: 40px;
+            border: 2px dashed rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            background: white;
+        }
+        
+        .mindmap-tree {
+            display: flex;
+            position: relative;
+        }
+        
+        .mindmap-root {
+            position: relative;
+            margin-right: 60px;
+        }
+        
+        .mindmap-node {
+            position: relative;
+            display: inline-block;
+            color: #374151;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid transparent;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .mindmap-node:hover {
+            transform: scale(1.05);
+        }
+        
+        .mindmap-node.root {
+            background: #3b82f6;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+            padding: 12px 24px;
+            border: 2px solid #3b82f6;
+        }
+        
+        .mindmap-node.level-1 {
+            background: #fbbf24;
+            color: #374151;
+            border: 2px solid #fbbf24;
+        }
+        
+        .mindmap-node.level-2 {
+            background: #f97316;
+            color: white;
+            border: 2px solid #f97316;
+        }
+        
+        .mindmap-node.level-3 {
+            background: white;
+            color: #374151;
+            border: 2px solid #d1d5db;
+        }
+        
+        .mindmap-branches {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .mindmap-branch {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            margin-bottom: 80px;
+        }
+        
+        .mindmap-branch::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 25px;
+            width: 30px;
+            height: 3px;
+            background: inherit;
+        }
+        
+        .mindmap-branch.branch-red {
+            background: #ef4444;
+        }
+        
+        .mindmap-branch.branch-yellow {
+            background: #f59e0b;
+        }
+        
+        .mindmap-branch.branch-green {
+            background: #10b981;
+        }
+        
+        .mindmap-branch-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .mindmap-node-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mindmap-status {
+            margin-left: 20px;
+            background: #3b82f6;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 18px;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mindmap-status::before {
+            content: '✅';
+            margin-right: 6px;
+        }
+        
+        .mindmap-children {
+            display: flex;
+            flex-direction: column;
+            margin-left: 40px;
+            position: relative;
+            margin-top: 20px;
+        }
+        
+        .mindmap-children::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: inherit;
+        }
+        
+        .mindmap-child-branch {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .mindmap-child-branch::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            width: 20px;
+            height: 2px;
+            background: inherit;
+        }
+        
+        .mindmap-grandchildren {
+            display: flex;
+            margin-left: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .mindmap-grandchild-branch {
+            margin-right: 15px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        
+        .mindmap-grandchild-branch::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            width: 15px;
+            height: 2px;
+            background: inherit;
+        }
+        
+        .mindmap-node:focus {
+            outline: 2px solid #3b82f6;
+        }
+        
+        .mindmap-node.selected {
+            outline: 2px solid #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+            
+            .skill-card,
+            .case-card {
+                padding: 20px;
+            }
+            
+            .knowledge-section {
+                padding: 20px;
+            }
+            
+            .services-table th,
+            .services-table td {
+                padding: 10px;
+            }
+            
+            .mindmap-container {
+                padding: 20px;
+            }
+            
+            .mindmap {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AI科技风格背景 -->
+    <div class="cyberpunk-bg"></div>
+    <div class="ai-robot-bg"></div>
+    
+    <!-- 顶部视觉头图模块 -->
+    <header class="header" id="header">
+        <h1>AI 训练师 | 大模型调优师 | 数据标注专家</h1>
+        <h2>专注大模型指令微调、多模态数据标注、模型效果评估与迭代</h2>
+    </header>
+    
+    <div class="container">
+        <!-- 核心能力矩阵模块 -->
+        <section class="skills-section">
+            <h2 class="section-title">核心能力矩阵</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>指令微调</h3>
+                    <h4>落地场景</h4>
+                    <p>电商客服大模型、教育问答模型</p>
+                    <h4>工具栈</h4>
+                    <p>FastChat、Llama Factory</p>
+                </div>
+                <div class="skill-card">
+                    <h3>多模态数据标注</h3>
+                    <h4>落地场景</h4>
+                    <p>图文生成模型、语音交互模型</p>
+                    <h4>工具栈</h4>
+                    <p>LabelStudio、自定义标注模板</p>
+                </div>
+                <div class="skill-card">
+                    <h3>模型效果评估</h3>
+                    <h4>落地场景</h4>
+                    <p>模型迭代优化、交付验收</p>
+                    <h4>工具栈</h4>
+                    <p>PPL 评估、人工打分体系</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 行业实战案例模板模块 -->
+        <section class="cases-section">
+            <h2 class="section-title">行业实战案例模板</h2>
+            <div class="cases-grid">
+                <div class="case-card" onclick="openModal('case1')">
+                    <h3>电商大模型指令微调</h3>
+                    <p>通用效果：回复准确率提升 30%-40%，标注数据量 10 万 + 级</p>
+                </div>
+                <div class="case-card" onclick="openModal('case2')">
+                    <h3>教育类多模态数据标注</h3>
+                    <p>通用效果：图文配对标注 5 万 + 组，模型生成准确率提升 25%-30%</p>
+                </div>
+                <div class="case-card" onclick="openModal('case3')">
+                    <h3>模型效果评估体系搭建</h3>
+                    <p>通用成果：搭建评估维度 10-15 个，输出标准化评估报告</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 行业知识分享模块 -->
+        <section class="knowledge-section">
+            <h2 class="section-title">行业知识分享</h2>
+            <div class="knowledge-item">
+                <div class="knowledge-icon">🤖</div>
+                <div>
+                    <h3>指令微调数据标注的 3 个核心原则</h3>
+                    <p>覆盖度、准确性、多样性</p>
+                </div>
+            </div>
+            <div class="knowledge-item">
+                <div class="knowledge-icon">🤖</div>
+                <div>
+                    <h3>模型效果评估避坑指南</h3>
+                    <p>避免过拟合评估、人工打分一致性校准</p>
+                </div>
+            </div>
+            <div class="knowledge-item">
+                <div class="knowledge-icon">🤖</div>
+                <div>
+                    <h3>新手入门 AI 训练的学习路径</h3>
+                    <p>工具→数据→调优→评估</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 行业服务能力展示模块 -->
+        <section class="services-section">
+            <h2 class="section-title">行业服务能力</h2>
+            <table class="services-table">
+                <tr>
+                    <th>服务方向</th>
+                    <th>服务范围</th>
+                </tr>
+                <tr>
+                    <td>大模型指令微调服务</td>
+                    <td>数据清洗、指令设计、模型微调、效果验证</td>
+                </tr>
+                <tr>
+                    <td>多模态数据标注服务</td>
+                    <td>图文 / 语音 / 视频标注、标注规范制定</td>
+                </tr>
+                <tr>
+                    <td>模型效果评估服务</td>
+                    <td>评估体系搭建、效果量化分析、迭代优化建议</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 思维导图模块 -->
+        <section class="mindmap-section">
+            <h2 class="section-title">AI训练师知识体系</h2>
+            <div class="mindmap-container">
+                <div class="mindmap-controls">
+                    <h4>快捷键说明：</h4>
+                    <ul>
+                        <li>选中块后按 <strong>Enter</strong> - 添加子节点</li>
+                        <li>选中块后按 <strong>Backspace</strong> - 删除当前节点</li>
+                        <li>拖动块可调整位置</li>
+                        <li>双击块可编辑内容</li>
+                    </ul>
+                </div>
+                <div class="mindmap" id="mindmap">
+                    <div class="mindmap-tree">
+                        <div class="mindmap-root">
+                            <div class="mindmap-node root" contenteditable="true" draggable="true">AI训练师</div>
+                        </div>
+                        <div class="mindmap-branches">
+                            <!-- 指令微调分支 -->
+                            <div class="mindmap-branch branch-red">
+                                <div class="mindmap-branch-content">
+                                    <div class="mindmap-node-container">
+                                        <div class="mindmap-node level-1" contenteditable="true" draggable="true">指令微调</div>
+                                        <div class="mindmap-status">已完成数据清洗规范</div>
+                                    </div>
+                                    <div class="mindmap-children">
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">数据清洗</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">数据筛选</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">去重</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">格式统一</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">指令设计</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">场景覆盖</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">意图识别</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">回复规范</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">模型微调</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">参数配置</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">epoch 调整</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">效果验证</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 多模态标注分支 -->
+                            <div class="mindmap-branch branch-yellow">
+                                <div class="mindmap-branch-content">
+                                    <div class="mindmap-node-container">
+                                        <div class="mindmap-node level-1" contenteditable="true" draggable="true">多模态标注</div>
+                                        <div class="mindmap-status">已完成标注规范制定</div>
+                                    </div>
+                                    <div class="mindmap-children">
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">图文标注</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">图像分类</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">文本描述</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">关联标注</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">语音标注</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">语音转写</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">情感分析</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">视频标注</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">动作识别</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">场景标注</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 模型评估分支 -->
+                            <div class="mindmap-branch branch-green">
+                                <div class="mindmap-branch-content">
+                                    <div class="mindmap-node-container">
+                                        <div class="mindmap-node level-1" contenteditable="true" draggable="true">模型评估</div>
+                                        <div class="mindmap-status">已完成评估体系搭建</div>
+                                    </div>
+                                    <div class="mindmap-children">
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">评估体系</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">评估维度</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">评估指标</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">评估流程</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">效果分析</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">性能分析</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">误差分析</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-child-branch">
+                                            <div class="mindmap-node level-2" contenteditable="true" draggable="true">迭代优化</div>
+                                            <div class="mindmap-grandchildren">
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">问题定位</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">方案优化</div>
+                                                </div>
+                                                <div class="mindmap-grandchild-branch">
+                                                    <div class="mindmap-node level-3" contenteditable="true" draggable="true">验证测试</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 底部模块 -->
+    <footer class="footer">
+        <p>AI 训练师 - 专注大模型调优与数据标注</p>
+        <p>©2025 AI 训练师行业内容展示 | 技术学习用途</p>
+    </footer>
+    
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</div>
+    
+    <!-- 案例弹窗 -->
+    <div id="case1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('case1')">&times;</span>
+            <h2>电商大模型指令微调</h2>
+            <p>通用效果：回复准确率提升 30%-40%，标注数据量 10 万 + 级</p>
+            <p>通过对电商领域的客服对话数据进行指令微调，显著提升了大模型在处理客户咨询、产品推荐、订单处理等场景下的表现。标注数据覆盖了常见问题、特殊场景和边缘案例，确保模型能够应对各种实际业务需求。</p>
+        </div>
+    </div>
+    
+    <div id="case2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('case2')">&times;</span>
+            <h2>教育类多模态数据标注</h2>
+            <p>通用效果：图文配对标注 5 万 + 组，模型生成准确率提升 25%-30%</p>
+            <p>针对教育场景的多模态数据进行标注，包括图文配对、知识点关联等任务。通过高质量的标注数据，训练出能够理解教育内容、生成准确教学材料的多模态模型，为教育数字化提供有力支持。</p>
+        </div>
+    </div>
+    
+    <div id="case3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('case3')">&times;</span>
+            <h2>模型效果评估体系搭建</h2>
+            <p>通用成果：搭建评估维度 10-15 个，输出标准化评估报告</p>
+            <p>建立了全面的模型效果评估体系，涵盖准确性、相关性、流畅度、安全性等多个维度。通过量化分析和标准化报告，为模型迭代优化提供数据支持，确保模型在实际应用中的表现符合预期。</p>
+        </div>
+    </div>
+    
+    <script>
+        // 顶部收窄功能
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('backToTop');
+            
+            // 当滚动距离超过100px时，头部收窄
+            if (window.scrollY > 100) {
+                header.classList.add('small');
+                backToTop.classList.add('visible');
+            } else {
+                header.classList.remove('small');
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // 打开案例弹窗
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+        
+        // 关闭案例弹窗
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        
+        // 点击弹窗外部关闭
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        }
+        
+        // 回到顶部功能
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // 思维导图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化思维导图节点事件
+            initMindmapNodes();
+        });
+        
+        function initMindmapNodes() {
+            const nodes = document.querySelectorAll('.mindmap-node');
+            nodes.forEach(node => {
+                // 添加键盘事件
+                node.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addChildNode(this);
+                    } else if (e.key === 'Backspace' && this.textContent.trim() === '') {
+                        e.preventDefault();
+                        deleteNode(this);
+                    }
+                });
+                
+                // 添加拖动功能
+                node.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', '');
+                    this.style.opacity = '0.5';
+                });
+                
+                node.addEventListener('dragend', function() {
+                    this.style.opacity = '1';
+                });
+                
+                // 添加点击事件以选中节点
+                node.addEventListener('click', function() {
+                    // 移除其他节点的选中状态
+                    document.querySelectorAll('.mindmap-node').forEach(n => {
+                        n.classList.remove('selected');
+                    });
+                    // 添加当前节点的选中状态
+                    this.classList.add('selected');
+                });
+            });
+        }
+        
+        // 添加子节点
+        function addChildNode(parentNode) {
+            // 确定节点级别和容器类型
+            let level = 1;
+            let containerClass = 'mindmap-children';
+            let branchClass = 'mindmap-child-branch';
+            
+            if (parentNode.classList.contains('level-1')) {
+                level = 2;
+                containerClass = 'mindmap-children';
+                branchClass = 'mindmap-child-branch';
+            } else if (parentNode.classList.contains('level-2')) {
+                level = 3;
+                containerClass = 'mindmap-grandchildren';
+                branchClass = 'mindmap-grandchild-branch';
+            } else if (parentNode.classList.contains('level-3')) {
+                // 三级节点以下不再添加子节点
+                return;
+            }
+            
+            // 检查是否已有对应容器
+            let container = parentNode.nextElementSibling;
+            if (!container || !container.classList.contains(containerClass)) {
+                container = document.createElement('div');
+                container.className = containerClass;
+                parentNode.parentNode.insertBefore(container, parentNode.nextSibling);
+            }
+            
+            // 创建新的branch和node
+            const branch = document.createElement('div');
+            branch.className = branchClass;
+            
+            const newNode = document.createElement('div');
+            newNode.className = `mindmap-node level-${level}`;
+            newNode.contentEditable = 'true';
+            newNode.draggable = 'true';
+            newNode.textContent = '新节点';
+            
+            branch.appendChild(newNode);
+            container.appendChild(branch);
+            
+            // 初始化新节点的事件
+            initMindmapNodes();
+            
+            // 聚焦到新节点并选中内容
+            newNode.focus();
+            const range = document.createRange();
+            range.selectNodeContents(newNode);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+        
+        // 删除节点
+        function deleteNode(node) {
+            // 不能删除根节点
+            if (node.classList.contains('root')) {
+                return;
+            }
+            
+            // 获取branch元素
+            const branch = node.parentNode;
+            if (branch) {
+                branch.remove();
+            } else {
+                node.remove();
+            }
+            
+            // 检查父容器是否还有子节点
+            const container = branch ? branch.parentNode : node.parentNode;
+            if (container && (container.classList.contains('mindmap-children') || container.classList.contains('mindmap-grandchildren')) && container.children.length === 0) {
+                container.remove();
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- 使用说明 -->
+<!-- 1. 本地预览：双击保存的.html 文件即可在浏览器打开 -->
+<!-- 2. 内容修改：可补充行业案例细节、调整知识点内容，无需修改核心逻辑 -->
+<!-- 3. 免费部署：Netlify 部署步骤（1. 注册账号；2. 点击 "Add new site"→"Deploy manually"；3. 拖入.html 文件；4. 完成部署） -->
